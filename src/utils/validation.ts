@@ -20,15 +20,13 @@ export function validateAuthFormData(
     isValid = false;
     errorMessage = 'Invalid Email id';
   } else if (
-    !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{8,}$/.test(
+    mode === 'signup' &&
+    !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}[\]:;<>,.?~\\/-]).{8,}$/.test(
       password
     )
   ) {
     isValid = false;
-    errorMessage =
-      mode == 'signup'
-        ? 'Invalid Password, try a secured passsword'
-        : 'Incorrect password';
+    errorMessage = 'Invalid Password, try a secured passsword';
   }
   return { isValid, errorMessage };
 }
