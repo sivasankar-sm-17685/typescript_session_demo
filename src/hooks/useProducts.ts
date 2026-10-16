@@ -1,11 +1,18 @@
 import { useEffect, useState } from 'react';
 import type { ProductItem, ProductsResponse } from '../types/products';
 import { getProducts } from '../api/productsApi';
+import { useNavigate } from 'react-router-dom';
 
 export function useProducts() {
+  const navigate = useNavigate();
+
   const [products, setProducts] = useState<ProductItem[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const onSelectProduct = (id: ProductItem['id']) => {
+    navigate(`/products/${id}`);
+  };
 
   useEffect(() => {
     let isCancelled = false;
@@ -36,5 +43,5 @@ export function useProducts() {
       isCancelled = true;
     };
   }, []);
-  return { products, error, isLoading };
+  return { products, error, isLoading, onSelectProduct };
 }

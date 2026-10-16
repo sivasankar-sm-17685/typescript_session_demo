@@ -1,11 +1,25 @@
-import type { ProductsResponse } from '../types/products';
+import type { ProductItem, ProductsResponse } from '../types/products';
 
-export async function getProducts(): Promise<ProductsResponse> {
-  const productResponse = await fetch('https://dummyjson.com/products');
+async function fetchJson<T>(url: string, errorMessage: string): Promise<T> {
+  const response = await fetch(url);
 
-  if (!productResponse.ok) {
-    throw new Error('Unable to fetch products');
+  if (!response.ok) {
+    throw new Error(errorMessage);
   }
 
-  return productResponse.json();
+  return response.json();
+}
+
+export function getProducts(): Promise<ProductsResponse> {
+  return fetchJson<ProductsResponse>(
+    'https://dummyjson.com/products',
+    'Unable to fetch products'
+  );
+}
+
+export function getProductById(id: ProductItem['id']): Promise<ProductItem> {
+  return fetchJson<ProductItem>(
+    `https://dummyjson.com/products/${id}`,
+    'Unable to fetch Product Details'
+  );
 }

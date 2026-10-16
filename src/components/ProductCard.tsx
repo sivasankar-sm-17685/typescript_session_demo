@@ -5,15 +5,26 @@ interface ProductCardProps {
   rating: number;
   thumbnail: string;
   category: string;
+  id: number;
+  onSelectProduct: (id: number) => void;
 }
 function ProductCard(props: ProductCardProps) {
-  const { thumbnail, title, description, category, price, rating } = props;
+  const {
+    thumbnail,
+    title,
+    description,
+    category,
+    price,
+    rating,
+    id,
+    onSelectProduct
+  } = props;
   return (
-    <div className='product-card'>
+    <div className='product-card' onClick={() => onSelectProduct(id)}>
       <img src={thumbnail} alt={title} className='product-thumbnail' />
       <p className='product-category'>{category}</p>
       <h3 className='product-title'>{title}</h3>
-      <h5 className='product-description'>{description}</h5>
+      <p className='product-description'>{description}</p>
       <h5 className='product-rating'>{rating}</h5>
       <p className='product-price'>${price}</p>
     </div>

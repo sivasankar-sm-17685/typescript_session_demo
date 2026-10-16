@@ -1,11 +1,12 @@
 import ProductCard from '../../components/ProductCard';
+import PageLoader from '../../components/PageLoader';
 import { useProducts } from '../../hooks/useProducts';
 
 function ProductList() {
-  const { products, error, isLoading } = useProducts();
+  const { products, error, isLoading, onSelectProduct } = useProducts();
 
   if (isLoading) {
-    return <p>Fetching Products....</p>;
+    return <PageLoader message='Fetching products...' />;
   }
 
   if (error) {
@@ -17,6 +18,8 @@ function ProductList() {
         return (
           <ProductCard
             key={product.id}
+            id={product.id}
+            onSelectProduct={onSelectProduct}
             title={product.title}
             description={product.description}
             thumbnail={product.thumbnail}
