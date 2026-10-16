@@ -9,16 +9,16 @@ export function validateAuthFormData(
 ): validationResponse {
   let isValid: boolean = true,
     errorMessage: string | null = null;
-  const { email, password } = data;
-  if (email === null || email.trim().length === 0) {
+  const { username, password } = data;
+  if (username === null || username.trim().length === 0) {
     isValid = false;
-    errorMessage = 'Email is required';
+    errorMessage = 'Username is required';
   } else if (password === null || password.trim().length === 0) {
     isValid = false;
     errorMessage = 'Password is required';
-  } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+  } else if (username.trim().length < 3) {
     isValid = false;
-    errorMessage = 'Invalid Email id';
+    errorMessage = 'User name should have atleast 3 characters';
   } else if (
     mode === 'signup' &&
     !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}[\]:;<>,.?~\\/-]).{8,}$/.test(

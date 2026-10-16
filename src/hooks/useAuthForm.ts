@@ -1,26 +1,22 @@
 import { useState } from 'react';
-import type { AuthMode } from '../types/auth';
+import type { AuthCardProps, AuthMode } from '../types/auth';
 import { loginUser, signUpUser } from '../api/authApi';
 import { validateAuthFormData } from '../utils/validation';
-import type { ToastItem } from '../types/toast';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from './useAuth';
 
-interface AuthCardHookProps {
-  showToast: (
-    status: ToastItem['status'],
-    message: ToastItem['message']
-  ) => void;
-}
-
-export function useAuthForm(props: AuthCardHookProps) {
+export function useAuthForm(props: AuthCardProps) {
+  const navigate = useNavigate();
+  const { signIn } = useAuth();
   const { showToast } = props;
   const [mode, setMode] = useState<AuthMode>('signin');
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const resetFormData = () => {
-    setEmail('');
+    setUsername('');
     setPassword('');
     setError(null);
   };
@@ -33,20 +29,23 @@ export function useAuthForm(props: AuthCardHookProps) {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { isValid, errorMessage } = validateAuthFormData(
-      { email, password },
+      { username, password },
       mode
     );
     if (isValid) {
       try {
         setIsSubmitting(true);
         if (mode === 'signin') {
-          const data = await loginUser(email, password);
-          showToast('success', `Welcome ${email}`);
-          console.log('data', data);
+          const data = await loginUser(username, password);
+          showToast('success', `Welcome ${username}`);
+          signIn(data.accessToken);
+          navigate('/products');
         } else {
-          const data = await signUpUser(email, password);
-          console.log('Account created', data);
-          showToast('success', `Account has been created, Sign in to continue`);
+          const data = await signUpUser(username, password);
+          showToast(
+            'success',
+            `Hey ${data.username} your account has been created, Sign in to continue`
+          );
           onSetMode('signin');
         }
         resetFormData();
@@ -65,12 +64,12 @@ export function useAuthForm(props: AuthCardHookProps) {
 
   return {
     mode,
-    email,
+    username,
     password,
     isSubmitting,
     error,
     onSetMode,
-    onEmailChange: setEmail,
+    onUsernameChange: setUsername,
     onPasswordChange: setPassword,
     onSubmit
   };

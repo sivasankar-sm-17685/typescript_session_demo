@@ -1,24 +1,17 @@
 import '../../App.css';
 import { useAuthForm } from '../../hooks/useAuthForm';
-import type { ToastItem } from '../../types/toast';
+import type { AuthCardProps } from '../../types/auth';
 import AuthForm from './AuthForm';
-
-interface AuthCardProps {
-  showToast: (
-    status: ToastItem['status'],
-    message: ToastItem['message']
-  ) => void;
-}
 
 function AuthCard(props: AuthCardProps) {
   const {
     mode,
-    email,
+    username,
     password,
     isSubmitting,
     error,
     onSetMode,
-    onEmailChange,
+    onUsernameChange,
     onPasswordChange,
     onSubmit
   } = useAuthForm(props);
@@ -46,12 +39,12 @@ function AuthCard(props: AuthCardProps) {
           </button>
         </div>
         <AuthForm
-          email={email}
+          username={username}
           password={password}
           isSubmitting={isSubmitting}
           error={error}
           onSubmit={onSubmit}
-          onEmailChange={onEmailChange}
+          onUsernameChange={onUsernameChange}
           onPasswordChange={onPasswordChange}
         />
       </div>

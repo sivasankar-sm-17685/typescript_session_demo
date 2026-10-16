@@ -1,7 +1,9 @@
+import type { ToastItem } from './toast';
+
 export type AuthMode = 'signin' | 'signup';
 
 export interface AuthFormData {
-  email: string;
+  username: string;
   password: string;
 }
 
@@ -14,15 +16,22 @@ export interface LoginResponse {
 
 export interface SignUpResponse {
   id: number;
-  email: string;
+  username: string;
 }
 
 export interface AuthFormProps {
-  email: string;
+  username: string;
   password: string;
   error: string | null;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  onEmailChange: (val: string) => void;
+  onUsernameChange: (val: string) => void;
   onPasswordChange: (val: string) => void;
   isSubmitting: boolean;
+}
+
+export interface AuthCardProps {
+  showToast: (
+    status: ToastItem['status'],
+    message: ToastItem['message']
+  ) => void;
 }

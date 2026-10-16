@@ -3,9 +3,9 @@ import FormField from '../../components/FormField';
 
 export default function AuthForm(props: AuthFormProps) {
   const {
-    email,
+    username,
     onSubmit,
-    onEmailChange,
+    onUsernameChange,
     password,
     onPasswordChange,
     error,
@@ -15,10 +15,10 @@ export default function AuthForm(props: AuthFormProps) {
   return (
     <form className='auth-form' onSubmit={onSubmit}>
       <FormField
-        label='Email'
-        value={email}
-        onChange={onEmailChange}
-        placeholder='Enter your email id'
+        label='Username'
+        value={username}
+        onChange={onUsernameChange}
+        placeholder='Enter your username'
       />
       <FormField
         label='Password'
