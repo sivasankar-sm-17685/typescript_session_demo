@@ -3,6 +3,8 @@ import { useProductDetail } from '../hooks/useProductDetail';
 import type { ToastType } from '../types/toast';
 import { useEffect, useState } from 'react';
 import PageLoader from './PageLoader';
+import { useCart } from '../context/useCart';
+import QuantityStepper from './QuantityStepper';
 
 interface ProductDetailProps {
   showToast: (
@@ -14,6 +16,7 @@ export default function ProductDetail(props: ProductDetailProps) {
   const { showToast } = props;
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { items, addItem, updateQuantity, removeItem } = useCart();
   const { productDetail, isLoading, error } = useProductDetail(Number(id));
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
@@ -33,6 +36,20 @@ export default function ProductDetail(props: ProductDetailProps) {
   if (isLoading) {
     return <PageLoader message='Fetching the product details...' />;
   }
+
+  const cartItem = productDetail
+    ? items.find((item) => item.id === productDetail.id)
+    : undefined;
+  const cartQuantity = cartItem?.quantity ?? 0;
+
+  const onDecrementQuantity = () => {
+    if (!productDetail) return;
+    if (cartQuantity <= 1) {
+      removeItem(productDetail.id);
+    } else {
+      updateQuantity(productDetail.id, cartQuantity - 1);
+    }
+  };
 
   return productDetail ? (
     <div className='product-detail'>
@@ -98,12 +115,31 @@ export default function ProductDetail(props: ProductDetailProps) {
           {productDetail.availabilityStatus} · {productDetail.stock} left
         </p>
 
-        <button
-          className='product-detail-add-to-cart'
-          disabled={productDetail.availabilityStatus !== 'In Stock'}
-        >
-          Add to cart
-        </button>
+        {cartQuantity === 0 ? (
+          <button
+            className='product-detail-add-to-cart'
+            disabled={productDetail.availabilityStatus !== 'In Stock'}
+            onClick={() => {
+              addItem({
+                id: productDetail.id,
+                price: productDetail.price,
+                title: productDetail.title,
+                thumbnail: productDetail.thumbnail
+              });
+            }}
+          >
+            Add to cart
+          </button>
+        ) : (
+          <QuantityStepper
+            className='product-detail-quantity-stepper'
+            quantity={cartQuantity}
+            onIncrement={() =>
+              updateQuantity(productDetail.id, cartQuantity + 1)
+            }
+            onDecrement={onDecrementQuantity}
+          />
+        )}
 
         <div className='product-detail-policies'>
           <p>

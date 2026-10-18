@@ -25,7 +25,7 @@ function ProductCard(props: ProductCardProps) {
       <p className='product-category'>{category}</p>
       <h3 className='product-title'>{title}</h3>
       <p className='product-description'>{description}</p>
-      <h5 className='product-rating'>{rating}</h5>
+      <p className='product-rating'>{rating}</p>
       <p className='product-price'>${price}</p>
     </div>
   );

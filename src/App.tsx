@@ -6,6 +6,7 @@ import { useToast } from './hooks/useToast';
 import ProductList from './features/Products/ProductsList';
 import ProtectedRoute from './components/ProtectedRoute';
 import ProductDetail from './components/ProductDetail';
+import CartList from './features/Cart/CartList';
 
 function App() {
   const { toastList, showToast, closeToast } = useToast();
@@ -19,6 +20,7 @@ function App() {
             path='/products/:id'
             element={<ProductDetail showToast={showToast} />}
           ></Route>
+          <Route path='/cart' element={<CartList />}></Route>
         </Route>
       </Routes>
       <ToastStack onClose={closeToast} toastList={toastList} />
