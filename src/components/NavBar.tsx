@@ -1,4 +1,7 @@
+// External
 import { Link } from 'react-router-dom';
+
+// Context
 import { useCart } from '../context/useCart';
 
 interface NavBarProps {

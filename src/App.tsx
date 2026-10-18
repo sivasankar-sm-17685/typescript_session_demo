@@ -1,12 +1,21 @@
-import './App.css';
-import ToastStack from './components/ToastStack';
-import AuthCard from './features/auth/AuthCard';
-import { Routes, Route } from 'react-router-dom';
+// External
+import { Route, Routes } from 'react-router-dom';
+
+// Hooks
 import { useToast } from './hooks/useToast';
-import ProductList from './features/Products/ProductsList';
-import ProtectedRoute from './components/ProtectedRoute';
+
+// Components
 import ProductDetail from './components/ProductDetail';
+import ProtectedRoute from './components/ProtectedRoute';
+import ToastStack from './components/ToastStack';
+
+// Features
+import AuthCard from './features/auth/AuthCard';
 import CartList from './features/Cart/CartList';
+import ProductList from './features/Products/ProductsList';
+
+// CSS
+import './App.css';
 
 function App() {
   const { toastList, showToast, closeToast } = useToast();

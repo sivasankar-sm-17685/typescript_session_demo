@@ -1,9 +1,18 @@
-import { useParams, useNavigate } from 'react-router-dom';
-import { useProductDetail } from '../hooks/useProductDetail';
-import type { ToastType } from '../types/toast';
+// External
 import { useEffect, useState } from 'react';
-import PageLoader from './PageLoader';
+import { useNavigate, useParams } from 'react-router-dom';
+
+// Types
+import type { ToastType } from '../types/toast';
+
+// Context
 import { useCart } from '../context/useCart';
+
+// Hooks
+import { useProductDetail } from '../hooks/useProductDetail';
+
+// Components
+import PageLoader from './PageLoader';
 import QuantityStepper from './QuantityStepper';
 
 interface ProductDetailProps {

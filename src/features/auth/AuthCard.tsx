@@ -1,7 +1,14 @@
-import '../../App.css';
-import { useAuthForm } from '../../hooks/useAuthForm';
+// Types
 import type { AuthCardProps } from '../../types/auth';
+
+// Hooks
+import { useAuthForm } from '../../hooks/useAuthForm';
+
+// Features
 import AuthForm from './AuthForm';
+
+// CSS
+import '../../App.css';
 
 function AuthCard(props: AuthCardProps) {
   const {

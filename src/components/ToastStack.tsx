@@ -1,4 +1,7 @@
+// Types
 import type { ToastItem } from '../types/toast';
+
+// Components
 import Toast from './Toast';
 
 interface ToastStackProps {

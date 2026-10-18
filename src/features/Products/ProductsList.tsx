@@ -1,6 +1,9 @@
-import ProductCard from '../../components/ProductCard';
-import PageLoader from '../../components/PageLoader';
+// Hooks
 import { useProducts } from '../../hooks/useProducts';
+
+// Components
+import PageLoader from '../../components/PageLoader';
+import ProductCard from '../../components/ProductCard';
 
 function ProductList() {
   const { products, error, isLoading, onSelectProduct } = useProducts();

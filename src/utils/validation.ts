@@ -1,4 +1,6 @@
+// Types
 import type { AuthFormData, AuthMode } from '../types/auth';
+
 interface validationResponse {
   isValid: boolean;
   errorMessage: string | null;

@@ -1,4 +1,7 @@
+// Types
 import type { AuthFormProps } from '../../types/auth';
+
+// Components
 import FormField from '../../components/FormField';
 
 export default function AuthForm(props: AuthFormProps) {

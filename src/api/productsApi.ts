@@ -1,3 +1,4 @@
+// Types
 import type { ProductItem, ProductsResponse } from '../types/products';
 
 async function fetchJson<T>(url: string, errorMessage: string): Promise<T> {

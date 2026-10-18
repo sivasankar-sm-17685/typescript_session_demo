@@ -1,4 +1,7 @@
+// External
 import { useState } from 'react';
+
+// Utils
 import {
   getLocalStorageItem,
   removeLocalStorageItem,

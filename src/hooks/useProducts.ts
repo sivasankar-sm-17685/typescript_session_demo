@@ -1,7 +1,12 @@
+// External
 import { useEffect, useState } from 'react';
-import type { ProductItem, ProductsResponse } from '../types/products';
-import { getProducts } from '../api/productsApi';
 import { useNavigate } from 'react-router-dom';
+
+// Types
+import type { ProductItem, ProductsResponse } from '../types/products';
+
+// Api
+import { getProducts } from '../api/productsApi';
 
 export function useProducts() {
   const navigate = useNavigate();

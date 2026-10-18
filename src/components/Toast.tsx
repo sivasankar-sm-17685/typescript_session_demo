@@ -1,4 +1,7 @@
+// External
 import { useEffect } from 'react';
+
+// Types
 import type { ToastType } from '../types/toast';
 
 interface ToastProps extends ToastType {

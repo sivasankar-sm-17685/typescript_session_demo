@@ -1,6 +1,13 @@
-import { useCart } from '../../context/useCart';
+// External
 import { useNavigate } from 'react-router-dom';
+
+// Types
 import type { CartItem } from '../../types/cart';
+
+// Context
+import { useCart } from '../../context/useCart';
+
+// Components
 import QuantityStepper from '../../components/QuantityStepper';
 
 function CartList() {

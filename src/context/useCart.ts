@@ -1,4 +1,7 @@
+// External
 import { useContext } from 'react';
+
+// Context
 import { CartContext } from './cartContextInstance';
 
 export function useCart() {

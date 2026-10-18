@@ -1,6 +1,12 @@
+// External
 import { useEffect, useState } from 'react';
+
+// Types
 import type { ProductItem } from '../types/products';
+
+// Api
 import { getProductById } from '../api/productsApi';
+
 export function useProductDetail(id: number) {
   const [productDetail, setProductDetail] = useState<ProductItem>();
   const [isLoading, setIsLoading] = useState(true);

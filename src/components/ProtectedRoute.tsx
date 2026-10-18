@@ -1,5 +1,10 @@
+// External
 import { Navigate, Outlet, useNavigate } from 'react-router-dom';
+
+// Hooks
 import { useAuth } from '../hooks/useAuth';
+
+// Components
 import NavBar from './NavBar';
 
 function ProtectedRoute() {

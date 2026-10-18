@@ -1,8 +1,17 @@
+// External
 import { useState } from 'react';
-import type { AuthCardProps, AuthMode } from '../types/auth';
-import { loginUser, signUpUser } from '../api/authApi';
-import { validateAuthFormData } from '../utils/validation';
 import { useNavigate } from 'react-router-dom';
+
+// Types
+import type { AuthCardProps, AuthMode } from '../types/auth';
+
+// Api
+import { loginUser, signUpUser } from '../api/authApi';
+
+// Utils
+import { validateAuthFormData } from '../utils/validation';
+
+// Hooks
 import { useAuth } from './useAuth';
 
 export function useAuthForm(props: AuthCardProps) {

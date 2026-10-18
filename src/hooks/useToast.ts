@@ -1,4 +1,7 @@
+// External
 import { useState } from 'react';
+
+// Types
 import type { ToastItem } from '../types/toast';
 
 export function useToast() {

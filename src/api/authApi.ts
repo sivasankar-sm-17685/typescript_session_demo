@@ -1,3 +1,4 @@
+// Types
 import type { LoginResponse, SignUpResponse } from '../types/auth';
 
 export async function loginUser(

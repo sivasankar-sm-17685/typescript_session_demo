@@ -1,5 +1,10 @@
+// External
 import { useReducer, type ReactNode } from 'react';
-import type { CartItem, CartAction, CartContextValue } from '../types/cart';
+
+// Types
+import type { CartAction, CartContextValue, CartItem } from '../types/cart';
+
+// Context
 import { CartContext } from './cartContextInstance';
 
 function cartReducer(state: CartItem[], action: CartAction): CartItem[] {

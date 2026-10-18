@@ -1,3 +1,4 @@
+// Types
 import type { ToastItem } from './toast';
 
 export type AuthMode = 'signin' | 'signup';
